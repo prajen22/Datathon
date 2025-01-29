@@ -1,0 +1,10 @@
+streamlit
+cassandra-driver
+plotly
+pandas
+requests
+groq
+scikit-learn
+twilio
+bcrypt
+pickle5
