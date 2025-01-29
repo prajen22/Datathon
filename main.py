@@ -28,10 +28,10 @@ st.set_page_config(page_title="Spaceve Promotional Content", page_icon="🎟️"
 
 
 # Retrieve Twilio credentials from environment variables
-TWILIO_ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
-TWILIO_AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
-TWILIO_PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
-RECIPIENT_PHONE_NUMBER = os.getenv('RECIPIENT_PHONE_NUMBER')
+TWILIO_ACCOUNT_SID = st.secrets["twilio"]["account_sid"]
+TWILIO_AUTH_TOKEN = st.secrets["twilio"]["auth_token"]
+TWILIO_PHONE_NUMBER = st.secrets["twilio"]["phone_number"]
+RECIPIENT_PHONE_NUMBER = st.secrets["twilio"]["recipient_phone_number"]
 
 def send_sms():
     client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
@@ -69,7 +69,7 @@ def generate_engaging_content_with_groq(user_name, product_name, price):
         str: A personalized marketing content string.
     """
     # Set your Groq API key
-    groq_api_key = os.getenv('groq_api_key')
+    groq_api_key = st.secrets["groq"]["api_key"]
     client = groq.Client(api_key=groq_api_key)
     
     # Define the prompt for Groq API
@@ -374,7 +374,7 @@ def recommend_events():
         """
 
         # Generate the personalized message
-        groq_api_key = os.getenv('groq_api_key')
+        groq_api_key = st.secrets["groq"]["api_key"]
         client = groq.Client(api_key=groq_api_key)
 
         try:
@@ -705,7 +705,7 @@ def fetch_events():
     return "\n".join(events) if events else "No events available."
 
 def chat_with_ai(customer_name, user_input):
-    groq_api_key = os.getenv('groq_api_key')
+    groq_api_key = st.secrets["groq"]["api_key"]
     client = groq.Client(api_key=groq_api_key)
 
     # Fetch events
